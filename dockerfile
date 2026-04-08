@@ -3,6 +3,9 @@ FROM python:3-alpine
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
+# 配置国内源
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+
 # 安装额外工具 - 常见工具
 RUN apk add --no-cache \
     bash \
@@ -37,6 +40,10 @@ RUN apk add --no-cache \
     gdb \
     valgrind
 
+# pip 换源（通过环境变量）
+ENV PIP_INDEX_URL=https://mirrors.aliyun.com/pypi/simple/
+ENV PIP_TRUSTED_HOST=mirrors.aliyun.com
+
 # 升级 pip 并安装常用 Python 包
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir \
@@ -55,18 +62,5 @@ RUN pip install --no-cache-dir --upgrade pip && \
     flake8
 
 WORKDIR /workspace
-
-RUN echo '#!/bin/sh' > /usr/local/bin/help && \
-    echo 'echo "=== Pocket Lab - Alpine Python3 测试环境 ==="' >> /usr/local/bin/help && \
-    echo 'echo "🐍 Python: $(python --version)"' >> /usr/local/bin/help && \
-    echo 'echo "📦 Pip: $(pip --version)"' >> /usr/local/bin/help && \
-    echo 'echo ""' >> /usr/local/bin/help && \
-    echo 'echo "🔧 工具分类:"' >> /usr/local/bin/help && \
-    echo 'echo "  • 常用: bash, vim, git, tree, htop"' >> /usr/local/bin/help && \
-    echo 'echo "  • 网络: curl, dig, nmap, nc, tcpdump"' >> /usr/local/bin/help && \
-    echo 'echo "  • 编译: gcc, g++, make, cmake, clang"' >> /usr/local/bin/help && \
-    echo 'echo "  • Python: ipython, pytest, requests, numpy"' >> /usr/local/bin/help && \
-    echo 'echo ""' >> /usr/local/bin/help && \
-    chmod +x /usr/local/bin/help
 
 CMD ["/bin/bash"]
