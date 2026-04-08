@@ -54,6 +54,6 @@ RUN pip install --no-cache-dir --upgrade pip && \
 COPY .bash_aliases /root/.bash_aliases
 COPY .bashrc /root/.bashrc
 
-WORKDIR /workspace
+WORKDIR /testbox
 
 CMD ["/bin/bash"]
