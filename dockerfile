@@ -10,7 +10,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 RUN apk add --no-cache \
     bash \
     busybox-extras \
-    vim \
+    nano \
     tree \
     htop \
     git \
@@ -35,10 +35,7 @@ RUN apk add --no-cache \
 RUN apk add --no-cache \
     g++ \
     make \
-    cmake \
-    clang \
-    gdb \
-    valgrind
+    cmake
 
 # pip 换源（通过环境变量）
 ENV PIP_INDEX_URL=https://mirrors.aliyun.com/pypi/simple/
@@ -48,18 +45,10 @@ ENV PIP_TRUSTED_HOST=mirrors.aliyun.com
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir \
     requests \
-    httpx \
-    beautifulsoup4 \
-    lxml \
     numpy \
     pandas \
-    flask \
     fastapi \
-    uvicorn \
-    pytest \
-    ipython \
-    black \
-    flake8
+    uvicorn 
 
 WORKDIR /workspace
 
