@@ -1,4 +1,4 @@
-alias ls='ls -F --color=auto --show-control-chars'
+alias ls='ls -F --color=auto'
 alias ll='ls -lh'
 alias py='python'
 alias ipy='python -m IPython'
