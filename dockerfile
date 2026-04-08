@@ -50,6 +50,10 @@ RUN pip install --no-cache-dir --upgrade pip && \
     fastapi \
     uvicorn 
 
+# 设置 bash 环境
+COPY .bash_aliases /root/.bash_aliases
+COPY .bashrc /root/.bashrc
+
 WORKDIR /workspace
 
 CMD ["/bin/bash"]

@@ -1,0 +1,8 @@
+alias ls='ls -F --color=auto --show-control-chars'
+alias ll='ls -lh'
+alias py='python'
+alias ipy='python -m IPython'
+alias gs='git status'
+alias gd='git diff'
+alias gtk='start gitk --all'
+alias grep='grep --color=auto'
