@@ -24,8 +24,8 @@ A lightweight tool container based on Alpine Linux, providing a rich set of deve
 
 ```bash
 # 克隆仓库
-git clone https://github.com/your-username/testbox-docker.git
-cd testbox-docker
+git clone https://github.com/ZeroKwok/testbox.git
+cd testbox
 
 # 构建镜像
 make build
